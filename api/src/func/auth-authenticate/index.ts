@@ -1,5 +1,5 @@
 import { compare } from 'bcryptjs';
-import { IsDefined, IsMobilePhone } from 'class-validator';
+import { IsDefined } from 'class-validator';
 import { sign } from 'jsonwebtoken';
 
 import { User } from '@boilerplate/entity';
@@ -7,8 +7,7 @@ import { DB, Func, UnauthorizedError, UserFriendlyError } from '@boilerplate/uti
 
 export class AuthenticateInput {
   @IsDefined()
-  @IsMobilePhone('en-HK')
-  mobilePhone: string;
+  username: string;
 
   @IsDefined()
   password: string;
@@ -28,13 +27,13 @@ export async function authenticate(input: AuthenticateInput): Promise<Authentica
 
   const user = await userRepository.findOne({
     where: {
-      mobilePhone: input.mobilePhone,
+      username: input.username,
     },
   });
-  if (!user) throw new UserFriendlyError('Please sign up first.');
+  if (!user) throw new UserFriendlyError('Invalid username.');
 
   const isValid = await compare(input.password, user.password);
-  if (!isValid) throw new UnauthorizedError();
+  if (!isValid) throw new UserFriendlyError('Invalid password.');
 
   const options = {
     expiresIn: 60 * 60 * 24 * 31,
