@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Functions Host",
+      "identifier": "runFunctionsHost",
+      "type": "shell",
+      "command": "func host start",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$func-watch",
+      "options": {
+        "env": {
+          "languageWorkers:node:arguments": "--inspect=5858"
+        },
+        "cwd": "./api/dist"
+      },
+      "dependsOn": [
+        "restoreExtensionsDev"
+      ]
+    },
+    {
+      "label": "restoreExtensionsDev",
+      "identifier": "restoreExtensionsDev",
+      "command": "func extensions install && dotnet restore",
+      "type": "shell",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "options": {
+        "cwd": "./api/dist"
+      },
+      "dependsOn": [
+        "buildDev"
+      ]
+    },
+    {
+      "label": "buildDev",
+      "identifier": "buildDev",
+      "command": "npm run build:dev",
+      "type": "shell",
+      "presentation": {
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "./api/"
+      }
+    },
+
+    {
+      "label": "restoreExtensionsProd",
+      "identifier": "restoreExtensionsProd",
+      "command": "func extensions install && dotnet restore",
+      "type": "shell",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "options": {
+        "cwd": "./api/dist"
+      },
+      "dependsOn": [
+        "buildProd"
+      ]
+    },
+    {
+      "label": "buildProd",
+      "identifier": "buildProd",
+      "command": "npm run build:prod",
+      "type": "shell",
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+}

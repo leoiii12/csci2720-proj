@@ -2,7 +2,6 @@ import {
     Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,
 } from 'typeorm';
 
-import { DeviceHistory } from './device-history';
 import { Role } from './role';
 
 @Entity('user')
@@ -25,8 +24,5 @@ export class User {
 
   @UpdateDateColumn()
   updateDate: Date;
-
-  @OneToMany(type => DeviceHistory, d => d.userId)
-  deviceHistories: DeviceHistory[];
 
 }

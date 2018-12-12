@@ -2,10 +2,10 @@
   {
     "name": "default",
     "type": "mssql",
-    "host": "",
-    "username": "",
-    "password": "",
-    "database": "",
+    "host": "event272-database-server.database.windows.net",
+    "username": "bpYua6dFR956Z6ur",
+    "password": "qNvLP6NA?&Q2h7gX",
+    "database": "event272",
     "logging": false,
     "options": {
       "encrypt": true
@@ -28,10 +28,10 @@
   {
     "name": "default-dist",
     "type": "mssql",
-    "host": "",
-    "username": "",
-    "password": "",
-    "database": "",
+    "host": "event272-database-server.database.windows.net",
+    "username": "bpYua6dFR956Z6ur",
+    "password": "qNvLP6NA?&Q2h7gX",
+    "database": "event272",
     "logging": false,
     "options": {
       "encrypt": true
