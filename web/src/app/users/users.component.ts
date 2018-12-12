@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserService } from '../user.service';
@@ -17,6 +17,15 @@ export class UsersComponent implements OnInit {
     password: ''
   };
 
+  public user = {
+    id: '',
+    username: '',
+    password: ''
+  };
+
+  @ViewChild('newUserModal') newUserModal;
+  @ViewChild('userModal') userModal;
+
   constructor(
     private userService: UserService,
     private modalService: NgbModal
@@ -30,8 +39,14 @@ export class UsersComponent implements OnInit {
     this.modalService
       .open(modal, { ariaLabelledBy: 'modal-basic-title' }).result
       .then(result => {
-        if (result === 'Save') {
+        if (result === 'NewUserSave') {
           this.saveNewUser();
+        }
+        if (result === 'UserSave') {
+          this.updateUser();
+        }
+        if (result === 'UserDelete') {
+          this.deleteUser();
         }
       }, closeReason => {
         console.log(closeReason);
@@ -48,6 +63,27 @@ export class UsersComponent implements OnInit {
     this.userService.createUser(this.newUser).subscribe(() => {
       this.loadUsers();
     });
+  }
+
+  public updateUser() {
+    this.userService.updateUser(this.user).subscribe(() => {
+      this.loadUsers();
+    });
+  }
+
+  public deleteUser(): any {
+    this.userService.deleteUser(this.user).subscribe(() => {
+      this.loadUsers();
+    });
+  }
+
+  public onActivate(event) {
+    if (event.type === 'click') {
+      event.cellElement.blur();
+
+      this.user = event.row;
+      this.openModal(this.userModal);
+    }
   }
 
 }

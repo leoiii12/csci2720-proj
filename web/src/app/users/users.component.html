@@ -8,7 +8,7 @@
         <button type="button" class="btn btn-primary" (click)="openModal(newUserModal)">New User</button>
       </div>
 
-      <ngx-datatable class="material" [columnMode]="'flex'" [rows]="users" [headerHeight]="50" [rowHeight]="'auto'">
+      <ngx-datatable class="material" [columnMode]="'flex'" [rows]="users" [headerHeight]="50" [rowHeight]="'auto'" (activate)="onActivate($event)">
 
         <ngx-datatable-column name="id" [flexGrow]="3">
           <ng-template let-value="value" ngx-datatable-cell-template>
@@ -48,9 +48,29 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save')">Save</button>
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('NewUserSave')">Save</button>
         </div>
       </ng-template>
+
+      <ng-template #userModal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">{{user.id}} - {{user.username}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter password" autocomplete="off"
+                     [(ngModel)]="user.password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('UserDelete')">Delete</button>
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('UserSave')">Save</button>
+          </div>
+        </ng-template>
 
     </div>
   </div>

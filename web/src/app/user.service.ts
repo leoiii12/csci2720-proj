@@ -28,9 +28,19 @@ export class UserService {
       );
   }
 
-  createUser(newUser: { username: string; password: string }) {
+  createUser(newUser: { username: string; password: string; }) {
     return this.http
       .post<any>(environment.apiUrl + '/api/User/Create', newUser);
+  }
+
+  updateUser(user: { id: string; password: string; }) {
+    return this.http
+      .post<any>(environment.apiUrl + '/api/User/Update', user);
+  }
+
+  deleteUser(user: { id: string; }) {
+    return this.http
+      .post<any>(environment.apiUrl + '/api/User/Delete', user);
   }
 
 }
