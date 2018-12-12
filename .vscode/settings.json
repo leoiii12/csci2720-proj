@@ -7,5 +7,6 @@
   "csharp.suppressDotnetRestoreNotification": true,
   "omnisharp.autoStart": false,
   "importSorter.generalConfiguration.sortOnBeforeSave": true,
-  "importSorter.importStringConfiguration.trailingComma": "multiLine"
+  "importSorter.importStringConfiguration.trailingComma": "multiLine",
+  "html.format.wrapAttributes": "aligned-multiple",
 }

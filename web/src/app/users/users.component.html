@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <br>
+      <h1>Users</h1>
+
+      <div class="text-right pb-3">
+        <button type="button" class="btn btn-primary" (click)="openModal(newUserModal)">New User</button>
+      </div>
+
+      <ngx-datatable class="material" [columnMode]="'flex'" [rows]="users" [headerHeight]="50" [rowHeight]="'auto'">
+
+        <ngx-datatable-column name="id" [flexGrow]="3">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="username" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="password" [flexGrow]="1">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+
+      <ng-template #newUserModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">New User</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" autocomplete="off"
+                   [(ngModel)]="newUser.username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" autocomplete="off"
+                   [(ngModel)]="newUser.password">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save')">Save</button>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>
