@@ -1,5 +1,5 @@
 import {
-    Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,
+    Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('event')
@@ -12,7 +12,7 @@ export class Event {
   title: string;
 
   @Column()
-  time: string;
+  time: Date;
 
   @Column()
   organizer: string;
