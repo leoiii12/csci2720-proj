@@ -2,22 +2,23 @@ import {
     Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,
 } from 'typeorm';
 
-import { Role } from './role';
-
-@Entity('user')
-export class User {
+@Entity('event')
+export class Event {
 
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  username: string;
+  title: string;
 
   @Column()
-  password: string;
+  time: string;
 
-  @Column('simple-array')
-  roles: Role[];
+  @Column()
+  organizer: string;
+
+  @Column()
+  contact: string;
 
   @CreateDateColumn()
   createDate: Date;
