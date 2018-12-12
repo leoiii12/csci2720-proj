@@ -16,5 +16,6 @@ export async function run(context: any) {
   context.res = await Func.run0(
     context,
     getRoles,
+    Authorized.permit({}),
   );
 }

@@ -12,14 +12,10 @@ export async function deleteUser(input: DeleteUserInput) {
   const connection = await DB.getConnection();
   const userRepository = connection.getRepository(User);
 
-  const user = await userRepository.findOne({
-    where: {
-      id: input.id,
-    },
-  });
+  const user = await userRepository.findOne(input.id);
 
   if (user) {
-    await userRepository.delete(user);
+    await userRepository.delete(input.id);
   }
 }
 

@@ -3,7 +3,7 @@
   "bindings": [
     {
       "authLevel": "anonymous",
-      "route": "Event/Create",
+      "route": "Event/Update",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
