@@ -6,6 +6,7 @@
       <span class="h1">Events</span>
 
       <div class="text-right pb-3">
+        <button type="button" class="btn btn-primary" (click)="reEvents()">Re Event</button>&nbsp;
         <button type="button" class="btn btn-primary" (click)="openModal(newEventModal)">New Event</button>
       </div>
 
@@ -33,6 +34,11 @@
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="contact" [flexGrow]="1">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="location" [flexGrow]="1">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{value}}
           </ng-template>
@@ -67,6 +73,11 @@
             <input type="text" class="form-control" id="contact" placeholder="Enter contact" autocomplete="off"
                    [(ngModel)]="newEvent.contact">
           </div>
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" placeholder="Enter location" autocomplete="off"
+                   [(ngModel)]="newEvent.location">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-dark" (click)="modal.close('NewEventSave')">Save</button>
@@ -100,12 +111,19 @@
             <input type="text" class="form-control" id="contact" placeholder="Enter contact" autocomplete="off"
                    [(ngModel)]="event.contact">
           </div>
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" placeholder="Enter location" autocomplete="off"
+                   [(ngModel)]="event.location">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-dark" (click)="modal.close('EventDelete')">Delete</button>
           <button type="button" class="btn btn-outline-dark" (click)="modal.close('EventSave')">Save</button>
         </div>
       </ng-template>
+
+      <br>
 
     </div>
   </div>

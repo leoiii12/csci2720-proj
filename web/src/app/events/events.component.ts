@@ -1,4 +1,6 @@
 import { NgxSpinnerService } from 'ngx-spinner';
+import { forkJoin, Observable } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +24,8 @@ export class EventsComponent implements OnInit {
     title: '',
     time: '',
     organizer: '',
-    contact: ''
+    contact: '',
+    location: ''
   };
 
   public event = {
@@ -30,7 +33,8 @@ export class EventsComponent implements OnInit {
     title: '',
     time: '',
     organizer: '',
-    contact: ''
+    contact: '',
+    location: ''
   };
 
   @ViewChild('newEventModal') newEventModal;
@@ -61,6 +65,35 @@ export class EventsComponent implements OnInit {
         }
       }, closeReason => {
         console.log(closeReason);
+      });
+  }
+
+  public reEvents() {
+    this.spinner.show();
+
+    this.eventService
+      .getFundraiseEvents()
+      .subscribe(events => {
+        alert(
+          'We have detected ' +
+          events.length + ' events, and they will be imported after the existing events are cleared. Please wait.');
+
+        if (events.length === 0) { return; }
+
+        // Clear events and import events
+        this.eventService
+          .reEvents()
+          .pipe(flatMap(() => {
+
+            const eventObservables = events.map(e => this.eventService.createEvent(e));
+
+            return forkJoin(...eventObservables);
+          }))
+          .subscribe(() => {
+            this.spinner.hide();
+
+            this.loadEvents();
+          });
       });
   }
 
