@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AboutComponent } from './about/about.component';
 import { AdminEventsComponent } from './admin-events/admin-events.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminComponent } from './admin/admin.component';
@@ -13,6 +14,7 @@ import { UserEventsComponent } from './user-events/user-events.component';
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'log-out', component: LogOutComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'admin/users', component: AdminUsersComponent},
   {path: 'admin/events', component: AdminEventsComponent},

@@ -23,6 +23,7 @@ import { UserEventComponent } from './user-event/user-event.component';
 import { UserEventsComponent } from './user-events/user-events.component';
 import { UserService } from './user.service';
 import { LogOutComponent } from './log-out/log-out.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LogOutComponent } from './log-out/log-out.component';
     UserEventsComponent,
     UserEventComponent,
     LogOutComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

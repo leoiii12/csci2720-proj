@@ -1,0 +1,187 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Academic Honesty</h1>
+      <p>We have read <a href="http://www.cuhk.edu.hk/policy/academichonesty">http://www.cuhk.edu.hk/policy/academichonesty</a>
+        carefully.</p>
+
+      <h1>Names</h1>
+      <p>CHOI, Man Kin 1155077469 API<br></p>
+
+      <h1>How-to</h1>
+      <p>Everything is implemented. Extra: Google Maps, FAAS, Ranked querying</p>
+
+      <h1>Technologies</h1>
+      <ul>
+        <li>Angular</li>
+        <li>TypeScript</li>
+        <li>SCSS</li>
+        <li>Bootstrap</li>
+        <li>Node.js</li>
+        <li>Azure Functions</li>
+        <li>Azure SQL Database</li>
+      </ul>
+
+      <h1>Design</h1>
+      <div>
+        <font face="Courier New" size="2">
+          <font color="blue">CREATE</font>&nbsp;<font color="blue">TABLE</font>&nbsp;<font color="maroon">comment</font>
+          <br />&nbsp;&nbsp;<font color="maroon">(</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">id</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+                color="black"><i>INT</i></font>&nbsp;<font color="blue">IDENTITY</font>&nbsp;<font color="blue">CONSTRAINT</font>&nbsp;<font
+                color="maroon">pk_0b0e4bbc8415ec426f87f3a88e2</font>&nbsp;<font color="blue">PRIMARY</font>&nbsp;<font
+                color="blue">KEY</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">content</font>&nbsp;&nbsp;<font color="black"><i>NVARCHAR</i></font>
+          <font color="maroon">(</font>
+          <font color="black">255</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">username</font>&nbsp;<font color="black"><i>NVARCHAR</i></font>
+          <font color="maroon">(</font>
+          <font color="black">255</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">eventid</font>&nbsp;&nbsp;<font color="black"><i>UNIQUEIDENTIFIER</i></font>&nbsp;<font
+                color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">fk_e4f8f71ea00e6eb8fc2fdd4844f</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">REFERENCES</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">event</font>
+          <br />&nbsp;&nbsp;<font color="maroon">)</font>
+          <br />
+          <br />
+          <font color="maroon">go</font>
+          <br />
+          <br />
+          <font color="blue">CREATE</font>&nbsp;<font color="blue">TABLE</font>&nbsp;<font color="maroon">event</font>
+          <br />&nbsp;&nbsp;<font color="maroon">(</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">id</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+                color="black"><i>UNIQUEIDENTIFIER</i></font>&nbsp;<font color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">df_30c2f3bbaf6d34a55f8ae6e4614</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">DEFAULT</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0080"><b>Newsequentialid</b></font>
+          <font color="maroon">(</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">pk_30c2f3bbaf6d34a55f8ae6e4614</font>&nbsp;<font
+                color="blue">PRIMARY</font>&nbsp;<font color="blue">KEY</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">title</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+                color="black"><i>NVARCHAR</i></font>
+          <font color="maroon">(</font>
+          <font color="black">255</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">organizer</font>&nbsp;&nbsp;<font color="black"><i>NVARCHAR</i></font>
+          <font color="maroon">(</font>
+          <font color="black">255</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">contact</font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><i>NVARCHAR</i></font>
+          <font color="maroon">(</font>
+          <font color="black">255</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">createdate</font>&nbsp;<font color="black"><i>DATETIME2</i></font>&nbsp;<font
+                color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">df_8e4e8463fe49acf3c4f9ba467a9</font>&nbsp;<font
+                color="blue">DEFAULT</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="fuchsia"><i>Getdate</i></font>
+          <font color="maroon">(</font>
+          <font color="maroon">)</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">updatedate</font>&nbsp;<font color="black"><i>DATETIME2</i></font>&nbsp;<font
+                color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">df_d08ad6aa73f8163b630a78b7d64</font>&nbsp;<font
+                color="blue">DEFAULT</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="fuchsia"><i>Getdate</i></font>
+          <font color="maroon">(</font>
+          <font color="maroon">)</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">time</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+                color="black"><i>DATETIME</i></font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">location</font>&nbsp;&nbsp;&nbsp;<font color="black"><i>NVARCHAR</i></font>
+          <font color="maroon">(</font>
+          <font color="black">255</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <br />&nbsp;&nbsp;<font color="maroon">)</font>
+          <br />
+          <br />
+          <font color="maroon">go</font>
+          <br />
+          <br />
+          <font color="blue">CREATE</font>&nbsp;<font color="blue">TABLE</font>&nbsp;<font color="maroon">[user]</font>
+          <br />&nbsp;&nbsp;<font color="maroon">(</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">id</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+                color="black"><i>UNIQUEIDENTIFIER</i></font>&nbsp;<font color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">df_cace4a159ff9f2512dd42373760</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">DEFAULT</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0080"><b>Newsequentialid</b></font>
+          <font color="maroon">(</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">pk_cace4a159ff9f2512dd42373760</font>&nbsp;<font
+                color="blue">PRIMARY</font>&nbsp;<font color="blue">KEY</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">username</font>&nbsp;&nbsp;&nbsp;<font color="black"><i>NVARCHAR</i></font>
+          <font color="maroon">(</font>
+          <font color="black">255</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">password</font>&nbsp;&nbsp;&nbsp;<font color="black"><i>NVARCHAR</i></font>
+          <font color="maroon">(</font>
+          <font color="black">255</font>
+          <font color="maroon">)</font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">roles</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+                color="black"><i>NTEXT</i></font>&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">createdate</font>&nbsp;<font color="black"><i>DATETIME2</i></font>&nbsp;<font
+                color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">df_456a6c03f0ac80b3a4ae72ffed8</font>&nbsp;<font
+                color="blue">DEFAULT</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="fuchsia"><i>Getdate</i></font>
+          <font color="maroon">(</font>
+          <font color="maroon">)</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">updatedate</font>&nbsp;<font color="black"><i>DATETIME2</i></font>&nbsp;<font
+                color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">df_b802fcb424617b0cef57d37901f</font>&nbsp;<font
+                color="blue">DEFAULT</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="fuchsia"><i>Getdate</i></font>
+          <font color="maroon">(</font>
+          <font color="maroon">)</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>
+          <br />&nbsp;&nbsp;<font color="maroon">)</font>
+          <br />
+          <br />
+          <font color="maroon">go</font>
+          <br />
+          <br />
+          <font color="blue">CREATE</font>&nbsp;<font color="blue">TABLE</font>&nbsp;<font color="maroon">user_favorite_events_event</font>
+          <br />&nbsp;&nbsp;<font color="maroon">(</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">userid</font>&nbsp;&nbsp;<font color="black"><i>UNIQUEIDENTIFIER</i></font>&nbsp;<font
+                color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>&nbsp;<font color="blue">CONSTRAINT</font>&nbsp;<font
+                color="maroon">fk_13ecfb8c61579bf13cfc48af4bb</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">REFERENCES</font>&nbsp;<font color="maroon">[user]</font>&nbsp;<font
+                color="blue">ON</font>&nbsp;<font color="blue">DELETE</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">CASCADE</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="maroon">eventid</font>&nbsp;<font color="black"><i>UNIQUEIDENTIFIER</i></font>&nbsp;<font
+                color="blue">NOT</font>&nbsp;<font color="blue">NULL</font>&nbsp;<font color="blue">CONSTRAINT</font>&nbsp;<font
+                color="maroon">fk_4166f5feba1e5635afa652ada71</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">REFERENCES</font>&nbsp;<font color="maroon">event</font>&nbsp;<font
+                color="blue">ON</font>&nbsp;<font color="blue">DELETE</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">CASCADE</font>
+          <font color="silver">,</font>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">CONSTRAINT</font>&nbsp;<font color="maroon">pk_775adf4e5fdbb6e5ddfdbab5549</font>&nbsp;<font
+                color="blue">PRIMARY</font>&nbsp;<font color="blue">KEY</font>&nbsp;<font color="maroon">(</font>
+          <font color="maroon">userid</font>
+          <font color="silver">,</font>&nbsp;<font color="maroon">eventid</font>
+          <font color="maroon">)</font>
+          <br />&nbsp;&nbsp;<font color="maroon">)</font>
+          <br />
+          <br />
+          <font color="maroon">go</font>&nbsp;
+        </font>
+      </div>
+
+    </div>
+  </div>
+</div>
