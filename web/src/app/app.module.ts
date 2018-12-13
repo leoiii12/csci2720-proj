@@ -19,6 +19,7 @@ import { HttpErrorInterceptor } from './http-error-interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserEventsComponent } from './user-events/user-events.component';
 import { UserService } from './user.service';
+import { UserEventComponent } from './user-event/user-event.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserService } from './user.service';
     AdminComponent,
     AdminUsersComponent,
     AdminEventsComponent,
-    UserEventsComponent
+    UserEventsComponent,
+    UserEventComponent
   ],
   imports: [
     BrowserModule,

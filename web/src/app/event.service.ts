@@ -11,6 +11,15 @@ export class Event {
   time: string;
   organizer: string;
   contact: string;
+  location: string;
+  comments: Comment[];
+}
+
+export class Comment {
+  id: number;
+  contact: string;
+  username: string;
+  createDate: string;
 }
 
 @Injectable({
@@ -21,6 +30,16 @@ export class EventService {
   constructor(
     private http: HttpClient
   ) { }
+
+  getEvent(id: string): Observable<Event> {
+    return this.http
+      .post<any>(environment.apiUrl + '/api/Event/Get', { id: id })
+      .pipe(
+        map(out => {
+          return out.data.event as Event;
+        })
+      );
+  }
 
   getEvents(): Observable<Event[]> {
     return this.http
@@ -50,6 +69,11 @@ export class EventService {
   reEvents(): Observable<any> {
     return this.http
       .get<any>(environment.apiUrl + '/api/Event/Re');
+  }
+
+  createComment(newComment: { content: string; username: string; eventId: string; }): Observable<any> {
+    return this.http
+      .post<any>(environment.apiUrl + '/api/Comment/Create', newComment);
   }
 
   getFundraiseEvents(): Observable<{ title: string; time: string; organizer: string; contact: string; location: string; }[]> {

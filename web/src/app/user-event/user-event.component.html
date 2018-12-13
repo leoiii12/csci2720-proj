@@ -1,0 +1,39 @@
+<br>
+<div class="container" *ngIf="event">
+
+  <div class="row">
+    <div class="col">
+      <h4>{{event.organizer}}</h4>
+      <h1 class="h2">{{event.title}}</h1>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col">
+      <p>{{event.time | date : 'medium'}}</p>
+      <p><i>{{event.contact}}</i></p>
+      <p>{{event.location}}</p>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" allowfullscreen src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDbzMaMWoHAI1E21S8qUyaly9RXkmJDxvA&q=The pavement outside Tsim Sha Tsui MTR Station Exit A2"></iframe>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">
+            <input class="form-control" type="text" placeholder="Enter content" (keyup.enter)="onCommentEnter()" [(ngModel)]="newComment.content">
+          </p>
+        </div>
+      </div>
+      <div class="card" *ngFor="let comment of event.comments">
+        <div class="card-body">
+          <h4 class="card-title">{{comment.username}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{comment.createDate | date : 'medium'}}</h6>
+          <p class="card-text">{{comment.content}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
