@@ -29,6 +29,7 @@
     "ngx-datetime-picker": "^2.0.0",
     "ngx-file-drop": "^5.0.0",
     "ngx-spinner": "^6.1.2",
+    "ngx-toggle": "^2.0.1",
     "ngx-uploader": "^7.0.0",
     "papaparse": "^4.6.2",
     "rxjs": "~6.3.3",

@@ -12,6 +12,11 @@ import { EventService } from '../event.service';
 })
 export class UserEventsComponent implements OnInit {
 
+  public pageControls = {
+    isFavorite: false,
+    query: ''
+  };
+
   public events = [];
   public filteredEvents = [];
 
@@ -25,10 +30,10 @@ export class UserEventsComponent implements OnInit {
     this.loadEvents();
   }
 
-  public loadEvents() {
+  public loadEvents(isFavorite = false) {
     this.spinner.show();
 
-    this.eventService.getEvents().subscribe((events: any[]) => {
+    this.eventService.getEvents(isFavorite, 'leochoi').subscribe((events: any[]) => {
       for (const event of events) {
         event.keywords = [].concat(
           event.title.toLowerCase().split(' '),
@@ -37,17 +42,18 @@ export class UserEventsComponent implements OnInit {
         );
       }
 
-      this.events = Array.from(new Set(events));
+      this.events = events;
       this.filteredEvents = this.events;
+
+      this.updateFilter();
 
       this.spinner.hide();
     });
   }
 
-  updateFilter(event) {
-    if (event.target.value) {
-      const keywords = event.target.value.toLowerCase().split(' ');
-      console.log(keywords);
+  public updateFilter() {
+    if (this.pageControls.query) {
+      const keywords = this.pageControls.query.toLowerCase().split(' ');
 
       this.filteredEvents = this.events
         .filter(e => {
@@ -67,6 +73,12 @@ export class UserEventsComponent implements OnInit {
       event.cellElement.blur();
 
       this.router.navigate(['user/event', event.row.id]);
+    }
+  }
+
+  public onIsFavoriteChange(event) {
+    if (event != null) {
+      this.loadEvents(event);
     }
   }
 

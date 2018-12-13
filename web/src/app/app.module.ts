@@ -1,6 +1,7 @@
 import { DateTimePickerModule } from 'ngx-datetime-picker';
 import { FileDropModule } from 'ngx-file-drop';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxToggleModule } from 'ngx-toggle';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -17,9 +18,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpErrorInterceptor } from './http-error-interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UserEventComponent } from './user-event/user-event.component';
 import { UserEventsComponent } from './user-events/user-events.component';
 import { UserService } from './user.service';
-import { UserEventComponent } from './user-event/user-event.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { UserEventComponent } from './user-event/user-event.component';
     AdminUsersComponent,
     AdminEventsComponent,
     UserEventsComponent,
-    UserEventComponent
+    UserEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +43,7 @@ import { UserEventComponent } from './user-event/user-event.component';
     NgxSpinnerModule,
     DateTimePickerModule,
     FileDropModule,
+    NgxToggleModule,
   ],
   providers: [
     UserService,

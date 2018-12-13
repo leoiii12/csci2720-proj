@@ -2,11 +2,24 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>Events</h1>
-      <p>This website is showing the approved fund-raising activities retrieved from Hong Kong Gov Public API, <a href="https://data.gov.hk/en-data/dataset/hk-ogcio-inf_div_01-approved-fund-raising-activities"
-           target="_blank">Intro</a>. You can add some events to your favorite list.</p>
 
-      <input class="form-control" type="text" placeholder="Type to filter the name column..." (keyup)="updateFilter($event)">
+      <h1>Events</h1>
+      <p>
+        This website is showing the approved fund-raising activities retrieved from Hong Kong Gov Public API,
+        <a href="https://data.gov.hk/en-data/dataset/hk-ogcio-inf_div_01-approved-fund-raising-activities" target="_blank">Intro</a>.
+        You can add some events to your favorite list.
+      </p>
+
+      <div class="row align-items-center">
+        <div class="col-9 col-md-10 col-xl-11">
+          <input class="form-control" type="text" placeholder="Type to filter the columns..." [(ngModel)]="pageControls.query"
+                 (keyup)="updateFilter($event)">
+        </div>
+        <div class="col-3 col-md-2 col-xl-1">
+          <ngx-toggle class="float-right" onColor="success" onText="favorite" offText="all" offColor="secondary" size="sm"
+                      [(ngModel)]="pageControls.isFavorite" (valueChange)="onIsFavoriteChange($event)"></ngx-toggle>
+        </div>
+      </div>
       <br>
 
       <ngx-datatable class="material" [columnMode]="'flex'" [rows]="filteredEvents" [headerHeight]="50" [rowHeight]="'auto'"

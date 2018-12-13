@@ -46,9 +46,9 @@ export class EventService {
       );
   }
 
-  getEvents(): Observable<Event[]> {
+  getEvents(isFavorite: boolean, username: string): Observable<Event[]> {
     return this.http
-      .get<any>(environment.apiUrl + '/api/Event/List')
+      .post<any>(environment.apiUrl + '/api/Event/List', { isFavorite, username })
       .pipe(
         map(out => {
           return out.data.events as Event[];
