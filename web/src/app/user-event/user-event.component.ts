@@ -1,6 +1,7 @@
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { Event, EventService } from '../event.service';
@@ -12,8 +13,9 @@ import { Event, EventService } from '../event.service';
 })
 export class UserEventComponent implements OnInit {
 
-  public pageControls: { id: string; } = {
-    id: ''
+  public pageControls: { id: string; mapURL: SafeResourceUrl; } = {
+    id: '',
+    mapURL: ''
   };
 
   public event: Event = undefined;
@@ -27,7 +29,8 @@ export class UserEventComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -41,10 +44,15 @@ export class UserEventComponent implements OnInit {
   loadEvent() {
     this.eventService.getEvent(this.pageControls.id).subscribe(event => {
       this.event = event;
-
       this.event.comments = this.event.comments.sort((a, b) => {
         return b.id - a.id;
       });
+
+      if (!this.pageControls.mapURL) {
+        this.pageControls.mapURL = this.sanitizer.bypassSecurityTrustResourceUrl(
+          'https://www.google.com/maps/embed/v1/place?key=AIzaSyDbzMaMWoHAI1E21S8qUyaly9RXkmJDxvA&q=' +
+          encodeURIComponent(event.location));
+      }
     });
   }
 
