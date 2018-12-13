@@ -1,5 +1,5 @@
 import {
-    Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn,
+    Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
 
@@ -12,7 +12,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Column()
@@ -23,7 +23,7 @@ export class User {
 
   @ManyToMany(type => Event)
   @JoinTable()
-  favoriteEvents: string[];
+  favoriteEvents: Event[];
 
   @CreateDateColumn()
   createDate: Date;

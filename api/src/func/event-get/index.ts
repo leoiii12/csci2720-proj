@@ -1,21 +1,25 @@
 import { IsDefined } from 'class-validator';
 
-import { Event } from '@boilerplate/entity';
+import { Event, User } from '@boilerplate/entity';
 import { DB, Func, UserFriendlyError } from '@boilerplate/util';
 
 export class GetEventInput {
   @IsDefined()
   id: string;
+
+  @IsDefined()
+  username: string;
 }
 
 export class GetEventOutput {
-  constructor(public event: Event) {
+  constructor(public event: Event, public isFavorite: boolean) {
   }
 }
 
 export async function getEvent(input: GetEventInput) {
   const connection = await DB.getConnection();
   const eventRepository = connection.getRepository(Event);
+  const userRepository = connection.getRepository(User);
 
   const event = await eventRepository
     .createQueryBuilder('event')
@@ -23,11 +27,21 @@ export async function getEvent(input: GetEventInput) {
     .where('event.id = :id', { id: input.id })
     .getOne();
 
-  if (event) {
-    return new GetEventOutput(event);
+  if (event === undefined) {
+    throw new UserFriendlyError('The event does not exist.');
   }
 
-  throw new UserFriendlyError('The event does not exist.');
+  const user = await userRepository
+    .createQueryBuilder('user')
+    .leftJoinAndSelect('user.favoriteEvents', 'event')
+    .where('user.username = :username', { username: input.username })
+    .getOne();
+
+  if (user === undefined) {
+    throw new UserFriendlyError('The user does not exist.');
+  }
+
+  return new GetEventOutput(event, user.favoriteEvents.some(e => e.id === event.id));
 }
 
 export async function run(context: any) {
