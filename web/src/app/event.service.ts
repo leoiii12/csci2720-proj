@@ -13,6 +13,7 @@ export class Event {
   contact: string;
   location: string;
   comments: Comment[];
+  isFavorite: boolean;
 }
 
 export class Comment {
@@ -31,12 +32,16 @@ export class EventService {
     private http: HttpClient
   ) { }
 
-  getEvent(id: string): Observable<Event> {
+  getEvent(id: string, username: string): Observable<Event> {
     return this.http
-      .post<any>(environment.apiUrl + '/api/Event/Get', { id: id })
+      .post<any>(environment.apiUrl + '/api/Event/Get', { id, username })
       .pipe(
         map(out => {
-          return out.data.event as Event;
+          const event: Event = out.data.event;
+
+          event.isFavorite = out.data.isFavorite;
+
+          return event;
         })
       );
   }
@@ -69,6 +74,16 @@ export class EventService {
   reEvents(): Observable<any> {
     return this.http
       .get<any>(environment.apiUrl + '/api/Event/Re');
+  }
+
+  favoriteEvent(eventId: string, username: string): Observable<any> {
+    return this.http
+      .post<any>(environment.apiUrl + '/api/Event/Favorite', { eventId, username });
+  }
+
+  unfavoriteEvent(eventId: string, username: string): Observable<any> {
+    return this.http
+      .post<any>(environment.apiUrl + '/api/Event/Unfavorite', { eventId, username });
   }
 
   createComment(newComment: { content: string; username: string; eventId: string; }): Observable<any> {

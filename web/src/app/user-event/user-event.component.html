@@ -22,10 +22,17 @@
       </div>
     </div>
     <div class="col">
+      <button type="button" class="btn btn-outline-success btn-block" *ngIf="event.isFavorite === false" (click)="onFavorite()">Favorite</button>
+      <button type="button" class="btn btn-outline-danger btn-block" *ngIf="event.isFavorite === true" (click)="onUnfavorite()">Unfavorite</button>
+      <br>
+      <br>
+
       <div class="card">
         <div class="card-body">
+          <h4 class="card-title">Comments</h4>
           <p class="card-text">
-            <input class="form-control" type="text" placeholder="Enter content" (keyup.enter)="onCommentEnter()" [(ngModel)]="newComment.content">
+            <input class="form-control" type="text" placeholder="New comment" (keyup.enter)="onCommentEnter()"
+                   [(ngModel)]="newComment.content">
           </p>
         </div>
       </div>
