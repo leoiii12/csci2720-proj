@@ -32,10 +32,10 @@ export async function listEvent(input: ListEventInput) {
       throw new UserFriendlyError('The user does not exist.');
     }
 
-    return new ListEventOutput(user.favoriteEvents);
+    return new ListEventOutput(user.favoriteEvents.filter(e => e.isDeleted === false));
   }
 
-  const events = await eventRepository.find();
+  const events = await eventRepository.find({ where: { isDeleted: false } });
 
   return new ListEventOutput(events);
 }

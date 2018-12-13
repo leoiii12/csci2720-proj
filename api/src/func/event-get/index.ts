@@ -24,7 +24,7 @@ export async function getEvent(input: GetEventInput) {
   const event = await eventRepository
     .createQueryBuilder('event')
     .leftJoinAndSelect('event.comments', 'comment')
-    .where('event.id = :id', { id: input.id })
+    .where('event.id = :id AND event.isDeleted = 0', { id: input.id })
     .getOne();
 
   if (event === undefined) {

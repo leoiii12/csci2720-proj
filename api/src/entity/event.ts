@@ -30,6 +30,12 @@ export class Event {
   @OneToMany(type => Comment, comment => comment.event)
   comments: Comment[];
 
+  @ManyToMany(type => User, user => user.favoriteEvents)
+  favoriteUsers: User[];
+
+  @Column()
+  isDeleted: boolean;
+
   @CreateDateColumn()
   createDate: Date;
 
