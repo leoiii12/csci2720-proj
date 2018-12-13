@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <br>
+      <a routerLink="/admin" routerLinkActive="active"><span class="h1">Admin</span></a>&nbsp;
+      <span class="h1">Events</span>
+
+      <div class="text-right pb-3">
+        <button type="button" class="btn btn-primary" (click)="openModal(newEventModal)">New Event</button>
+      </div>
+
+      <ngx-datatable class="material" [columnMode]="'flex'" [rows]="events" [headerHeight]="50" [rowHeight]="'auto'"
+                     (activate)="onActivate($event)">
+
+        <ngx-datatable-column name="id" [flexGrow]="1">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="title" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="time" [flexGrow]="1">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value | date : 'short'}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="organizer" [flexGrow]="1">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="contact" [flexGrow]="1">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+
+      <ng-template #newEventModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">New Event</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Enter title" autocomplete="off" [(ngModel)]="newEvent.title">
+          </div>
+          <div class="form-group">
+            <label for="time">Time</label>
+            <ngx-datetime-picker id="time" [(selectedDateTime)]="pageControls.selectedDateTime" [disableButton]="false"
+                                 [disableInput]="true"></ngx-datetime-picker>
+          </div>
+          <div class="form-group">
+            <label for="organizer">Organizer</label>
+            <input type="text" class="form-control" id="organizer" placeholder="Enter organizer" autocomplete="off"
+                   [(ngModel)]="newEvent.organizer">
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" class="form-control" id="contact" placeholder="Enter contact" autocomplete="off"
+                   [(ngModel)]="newEvent.contact">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('NewEventSave')">Save</button>
+        </div>
+      </ng-template>
+
+      <ng-template #eventModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">{{event.id}}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Enter title" autocomplete="off" [(ngModel)]="event.title">
+          </div>
+          <div class="form-group">
+            <label for="time">Time</label>
+            <ngx-datetime-picker id="time" [(selectedDateTime)]="pageControls.selectedDateTime" [disableButton]="false"
+                                 [disableInput]="true"></ngx-datetime-picker>
+          </div>
+          <div class="form-group">
+            <label for="organizer">Organizer</label>
+            <input type="text" class="form-control" id="organizer" placeholder="Enter organizer" autocomplete="off"
+                   [(ngModel)]="event.organizer">
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" class="form-control" id="contact" placeholder="Enter contact" autocomplete="off"
+                   [(ngModel)]="event.contact">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('EventDelete')">Delete</button>
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('EventSave')">Save</button>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>

@@ -1,7 +1,9 @@
-@import "~bootswatch/dist/flatly/variables";
+@import "~bootswatch/dist/united/variables";
 @import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/flatly/bootswatch";
+@import "~bootswatch/dist/united/bootswatch";
 
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+@import '~ngx-datetime-picker/ngx-datetime-picker.css';

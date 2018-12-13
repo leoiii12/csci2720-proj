@@ -1,5 +1,5 @@
+import { DateTimePickerModule } from 'ngx-datetime-picker';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgxUploaderModule } from 'ngx-uploader';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -8,8 +8,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import { AdminComponent } from './admin/admin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EventsComponent } from './events/events.component';
 import { HomeComponent } from './home/home.component';
 import { HttpErrorInterceptor } from './http-error-interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -21,17 +23,19 @@ import { UsersComponent } from './users/users.component';
     AppComponent,
     HomeComponent,
     NotFoundComponent,
-    UsersComponent
+    UsersComponent,
+    EventsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule.forRoot(),
-    NgxUploaderModule,
     NgxDatatableModule,
     HttpClientModule,
     FormsModule,
     NgxSpinnerModule,
+    DateTimePickerModule,
   ],
   providers: [
     UserService,
