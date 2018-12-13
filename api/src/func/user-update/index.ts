@@ -16,11 +16,7 @@ export async function updateUser(input: UpdateUserInput) {
   const connection = await DB.getConnection();
   const userRepository = connection.getRepository(User);
 
-  const user = await userRepository.findOne({
-    where: {
-      id: input.id,
-    },
-  });
+  const user = await userRepository.findOne(input.id);
   if (!user) throw new UserFriendlyError('The user does not exist.');
 
   user.password = await hash(input.password, 12);

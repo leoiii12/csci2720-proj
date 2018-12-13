@@ -32,7 +32,7 @@
     "username": "bpYua6dFR956Z6ur",
     "password": "qNvLP6NA?&Q2h7gX",
     "database": "event272",
-    "logging": false,
+    "logging": true,
     "options": {
       "encrypt": true
     }

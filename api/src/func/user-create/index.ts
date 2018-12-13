@@ -1,14 +1,18 @@
 import { hash } from 'bcryptjs';
-import { IsDefined } from 'class-validator';
+import { IsDefined, MaxLength, MinLength } from 'class-validator';
 
 import { User } from '@boilerplate/entity';
 import { DB, Func, UserFriendlyError } from '@boilerplate/util';
 
 export class CreateUserInput {
   @IsDefined()
+  @MinLength(4)
+  @MaxLength(20)
   username: string;
 
   @IsDefined()
+  @MinLength(4)
+  @MaxLength(20)
   password: string;
 }
 

@@ -12,14 +12,10 @@ export async function deleteEvent(input: DeleteEventInput) {
   const connection = await DB.getConnection();
   const eventRepository = connection.getRepository(Event);
 
-  const event = await eventRepository.findOne({
-    where: {
-      id: input.id,
-    },
-  });
+  const event = await eventRepository.findOne(input.id);
 
   if (event) {
-    await eventRepository.delete(event);
+    await eventRepository.delete(input.id);
   }
 }
 

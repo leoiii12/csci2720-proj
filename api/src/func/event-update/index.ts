@@ -25,11 +25,7 @@ export async function updateEvent(input: UpdateEventInput) {
   const connection = await DB.getConnection();
   const eventRepository = connection.getRepository(Event);
 
-  const event = await eventRepository.findOne({
-    where: {
-      id: input.id,
-    },
-  });
+  const event = await eventRepository.findOne(input.id);
   if (!event) throw new UserFriendlyError('The event does not exist.');
 
   event.title = input.title;
