@@ -10,11 +10,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventService } from '../event.service';
 
 @Component({
-  selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  selector: 'app-admin-events',
+  templateUrl: './admin-events.component.html',
+  styleUrls: ['./admin-events.component.scss']
 })
-export class EventsComponent implements OnInit {
+export class AdminEventsComponent implements OnInit {
 
   public pageControls: { selectedDateTime: Date } = {
     selectedDateTime: undefined

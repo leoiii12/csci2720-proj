@@ -9,24 +9,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import { AdminEventsComponent } from './admin-events/admin-events.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminComponent } from './admin/admin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventsComponent } from './events/events.component';
 import { HomeComponent } from './home/home.component';
 import { HttpErrorInterceptor } from './http-error-interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UserEventsComponent } from './user-events/user-events.component';
 import { UserService } from './user.service';
-import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NotFoundComponent,
-    UsersComponent,
-    EventsComponent,
-    AdminComponent
+    AdminComponent,
+    AdminUsersComponent,
+    AdminEventsComponent,
+    UserEventsComponent
   ],
   imports: [
     BrowserModule,
