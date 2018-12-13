@@ -1,4 +1,6 @@
+import { FileSystemFileEntry, UploadEvent } from 'ngx-file-drop';
 import { NgxSpinnerService } from 'ngx-spinner';
+import * as Papa from 'papaparse';
 import { forkJoin, Observable } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
@@ -68,7 +70,7 @@ export class EventsComponent implements OnInit {
       });
   }
 
-  public reEvents() {
+  public importEvents() {
     this.spinner.show();
 
     this.eventService
@@ -84,7 +86,6 @@ export class EventsComponent implements OnInit {
         this.eventService
           .reEvents()
           .pipe(flatMap(() => {
-
             const eventObservables = events.map(e => this.eventService.createEvent(e));
 
             return forkJoin(...eventObservables);
@@ -159,4 +160,31 @@ export class EventsComponent implements OnInit {
       this.openModal(this.eventModal);
     }
   }
+
+  public onDropped(event: UploadEvent) {
+    this.spinner.show();
+
+    for (const droppedFile of event.files) {
+      const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+
+      fileEntry.file(file => {
+        Papa.parse(file, {
+          skipEmptyLines: true,
+          complete: (results) => {
+            alert('Your csv has been parsed, and the events will be imported.');
+
+            const eventObservables = results.data.map(e => this.eventService.createEvent(e));
+
+            forkJoin(...eventObservables).subscribe(() => {
+              this.spinner.hide();
+
+              this.loadEvents();
+            });
+          },
+          header: true
+        });
+      });
+    }
+  }
+
 }

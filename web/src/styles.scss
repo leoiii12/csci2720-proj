@@ -7,3 +7,8 @@
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 @import '~ngx-datetime-picker/ngx-datetime-picker.css';
+
+.drop-zone {
+  margin: 12px 0 !important;
+  border-radius: 0 !important;
+}

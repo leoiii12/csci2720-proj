@@ -1,4 +1,5 @@
 import { DateTimePickerModule } from 'ngx-datetime-picker';
+import { FileDropModule } from 'ngx-file-drop';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -36,6 +37,7 @@ import { UsersComponent } from './users/users.component';
     FormsModule,
     NgxSpinnerModule,
     DateTimePickerModule,
+    FileDropModule,
   ],
   providers: [
     UserService,
