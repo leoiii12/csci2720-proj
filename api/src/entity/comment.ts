@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } f
 
 import { Event } from './event';
 
-@Entity()
+@Entity('comment')
 export class Comment {
 
   @PrimaryGeneratedColumn()

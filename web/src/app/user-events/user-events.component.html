@@ -13,7 +13,7 @@
       <div class="row align-items-center">
         <div class="col-9 col-md-10 col-xl-11">
           <input class="form-control" type="text" placeholder="Type to filter the columns..." [(ngModel)]="pageControls.query"
-                 (keyup)="updateFilter($event)">
+                 (keyup)="updateFilter()">
         </div>
         <div class="col-3 col-md-2 col-xl-1">
           <ngx-toggle class="float-right" onColor="success" onText="favorite" offText="all" offColor="secondary" size="sm"

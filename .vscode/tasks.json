@@ -13,7 +13,8 @@
       "problemMatcher": "$func-watch",
       "options": {
         "env": {
-          "languageWorkers:node:arguments": "--inspect=5858"
+          "languageWorkers:node:arguments": "--inspect=5858",
+          "TZ": "UTC"
         },
         "cwd": "./api/dist"
       },
@@ -71,6 +72,9 @@
       "type": "shell",
       "presentation": {
         "reveal": "always"
+      },
+      "options": {
+        "cwd": "./api/"
       }
     }
   ]

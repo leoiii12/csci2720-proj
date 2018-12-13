@@ -2,7 +2,7 @@
   "azureFunctions.projectRuntime": "~2",
   "azureFunctions.projectLanguage": "JavaScript",
   "azureFunctions.templateFilter": "Verified",
-  "azureFunctions.deploySubpath": "dist",
+  "azureFunctions.deploySubpath": "api/dist",
   "azureFunctions.preDeployTask": "restoreExtensionsProd",
   "csharp.suppressDotnetRestoreNotification": true,
   "omnisharp.autoStart": false,
