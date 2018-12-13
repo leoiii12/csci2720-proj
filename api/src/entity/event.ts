@@ -20,6 +20,9 @@ export class Event {
   @Column()
   contact: string;
 
+  @Column()
+  location: string;
+
   @CreateDateColumn()
   createDate: Date;
 

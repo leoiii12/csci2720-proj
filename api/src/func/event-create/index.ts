@@ -16,6 +16,9 @@ export class CreateEventInput {
 
   @IsDefined()
   contact: string;
+
+  @IsDefined()
+  location: string;
 }
 
 export async function createEvent(input: CreateEventInput) {
@@ -27,6 +30,7 @@ export async function createEvent(input: CreateEventInput) {
   event.time = new Date(input.time);
   event.organizer = input.organizer;
   event.contact = input.contact;
+  event.location = input.location;
 
   await eventRepository.insert(event);
 }

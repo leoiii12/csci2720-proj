@@ -19,6 +19,9 @@ export class UpdateEventInput {
 
   @IsDefined()
   contact: string;
+
+  @IsDefined()
+  location: string;
 }
 
 export async function updateEvent(input: UpdateEventInput) {
@@ -32,6 +35,7 @@ export async function updateEvent(input: UpdateEventInput) {
   event.time = new Date(input.time);
   event.organizer = input.organizer;
   event.contact = input.contact;
+  event.location = input.location;
 
   await eventRepository.save(event);
 }
