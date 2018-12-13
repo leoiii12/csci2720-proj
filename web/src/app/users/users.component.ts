@@ -57,8 +57,12 @@ export class UsersComponent implements OnInit {
   }
 
   public loadUsers() {
+    this.spinner.show();
+
     this.userService.getUsers().subscribe(users => {
       this.users = users;
+
+      this.spinner.hide();
     });
   }
 
