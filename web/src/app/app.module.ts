@@ -1,3 +1,4 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxUploaderModule } from 'ngx-uploader';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -30,6 +31,7 @@ import { UsersComponent } from './users/users.component';
     NgxDatatableModule,
     HttpClientModule,
     FormsModule,
+    NgxSpinnerModule,
   ],
   providers: [
     UserService,

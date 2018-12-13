@@ -1,3 +1,5 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -28,7 +30,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -60,20 +63,32 @@ export class UsersComponent implements OnInit {
   }
 
   public saveNewUser() {
+    this.spinner.show();
+
     this.userService.createUser(this.newUser).subscribe(() => {
       this.loadUsers();
+
+      this.spinner.hide();
     });
   }
 
   public updateUser() {
+    this.spinner.show();
+
     this.userService.updateUser(this.user).subscribe(() => {
       this.loadUsers();
+
+      this.spinner.hide();
     });
   }
 
   public deleteUser(): any {
+    this.spinner.show();
+
     this.userService.deleteUser(this.user).subscribe(() => {
       this.loadUsers();
+
+      this.spinner.hide();
     });
   }
 
