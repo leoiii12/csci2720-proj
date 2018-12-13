@@ -1,29 +1,31 @@
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 
   public pageControls = {
-    isCollapsed: false
+    isCollapsed: false,
+    username: ''
   };
 
-  private unsubscribe = new Subject<void>();
-
-  constructor() {
+  constructor(
+    private authService: AuthService
+  ) {
   }
 
   ngOnInit() {
-  }
+    this.pageControls.username = this.authService.username;
 
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.authService.usernameObservable.subscribe(username => {
+      setTimeout(() => {
+        this.pageControls.username = username;
+      });
+    });
   }
-
 }

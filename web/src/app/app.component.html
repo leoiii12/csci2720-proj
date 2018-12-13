@@ -2,7 +2,7 @@
   <a class="navbar-brand" href="#">Event272</a>
 
   <button class="navbar-toggler" type="button" (click)="pageControls.isCollapsed = !pageControls.isCollapsed"
-    [attr.aria-expanded]="!pageControls.isCollapsed">
+          [attr.aria-expanded]="!pageControls.isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -10,11 +10,21 @@
 
     <!-- Left -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li *ngIf="pageControls.username === null" class="nav-item">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
       </li>
+
+      <li *ngIf="pageControls.username" class="nav-item">
+          <a class="nav-link" routerLink="/user/events" routerLinkActive="active">Events</a>
+        </li>
     </ul>
 
+    <!-- Right -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/log-out" routerLinkActive="active">{{pageControls.username}}</a>
+      </li>
+    </ul>
   </div>
 </nav>
 

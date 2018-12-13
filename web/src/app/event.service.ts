@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { AuthService } from './auth.service';
+
 export class Event {
   id: string;
   title: string;
@@ -29,12 +31,13 @@ export class Comment {
 export class EventService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
-  getEvent(id: string, username: string): Observable<Event> {
+  getEvent(id: string): Observable<Event> {
     return this.http
-      .post<any>(environment.apiUrl + '/api/Event/Get', { id, username })
+      .post<any>(environment.apiUrl + '/api/Event/Get', { id, username: this.authService.username })
       .pipe(
         map(out => {
           const event: Event = out.data.event;
@@ -46,9 +49,9 @@ export class EventService {
       );
   }
 
-  getEvents(isFavorite: boolean, username: string): Observable<Event[]> {
+  getEvents(isFavorite: boolean = false): Observable<Event[]> {
     return this.http
-      .post<any>(environment.apiUrl + '/api/Event/List', { isFavorite, username })
+      .post<any>(environment.apiUrl + '/api/Event/List', { isFavorite, username: this.authService.username })
       .pipe(
         map(out => {
           return out.data.events as Event[];
@@ -76,17 +79,19 @@ export class EventService {
       .get<any>(environment.apiUrl + '/api/Event/Re');
   }
 
-  favoriteEvent(eventId: string, username: string): Observable<any> {
+  favoriteEvent(eventId: string): Observable<any> {
     return this.http
-      .post<any>(environment.apiUrl + '/api/Event/Favorite', { eventId, username });
+      .post<any>(environment.apiUrl + '/api/Event/Favorite', { eventId, username: this.authService.username });
   }
 
-  unfavoriteEvent(eventId: string, username: string): Observable<any> {
+  unfavoriteEvent(eventId: string): Observable<any> {
     return this.http
-      .post<any>(environment.apiUrl + '/api/Event/Unfavorite', { eventId, username });
+      .post<any>(environment.apiUrl + '/api/Event/Unfavorite', { eventId, username: this.authService.username });
   }
 
   createComment(newComment: { content: string; username: string; eventId: string; }): Observable<any> {
+    newComment.username = this.authService.username;
+
     return this.http
       .post<any>(environment.apiUrl + '/api/Comment/Create', newComment);
   }

@@ -5,12 +5,14 @@ import { AdminEventsComponent } from './admin-events/admin-events.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
+import { LogOutComponent } from './log-out/log-out.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserEventComponent } from './user-event/user-event.component';
 import { UserEventsComponent } from './user-events/user-events.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: 'log-out', component: LogOutComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'admin/users', component: AdminUsersComponent},
   {path: 'admin/events', component: AdminEventsComponent},

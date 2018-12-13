@@ -33,7 +33,7 @@ export class UserEventsComponent implements OnInit {
   public loadEvents(isFavorite = false) {
     this.spinner.show();
 
-    this.eventService.getEvents(isFavorite, 'leochoi').subscribe((events: any[]) => {
+    this.eventService.getEvents(isFavorite).subscribe((events: any[]) => {
       for (const event of events) {
         event.keywords = [].concat(
           event.title.toLowerCase().split(' '),

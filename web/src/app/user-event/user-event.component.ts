@@ -42,7 +42,7 @@ export class UserEventComponent implements OnInit {
   }
 
   loadEvent() {
-    this.eventService.getEvent(this.pageControls.id, 'leochoi').subscribe(event => {
+    this.eventService.getEvent(this.pageControls.id).subscribe(event => {
       this.event = event;
       this.event.comments = this.event.comments.sort((a, b) => {
         return b.id - a.id;
@@ -74,7 +74,7 @@ export class UserEventComponent implements OnInit {
   onFavorite() {
     this.spinner.show();
 
-    this.eventService.favoriteEvent(this.event.id, 'leochoi').subscribe(() => {
+    this.eventService.favoriteEvent(this.event.id).subscribe(() => {
       this.loadEvent();
 
       this.spinner.hide();
@@ -84,7 +84,7 @@ export class UserEventComponent implements OnInit {
   onUnfavorite() {
     this.spinner.show();
 
-    this.eventService.unfavoriteEvent(this.event.id, 'leochoi').subscribe(() => {
+    this.eventService.unfavoriteEvent(this.event.id).subscribe(() => {
       this.loadEvent();
 
       this.spinner.hide();
