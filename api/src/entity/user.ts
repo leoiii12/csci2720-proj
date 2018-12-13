@@ -1,7 +1,9 @@
 import {
-    Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,
+    Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 
+import { Event } from './event';
 import { Role } from './role';
 
 @Entity('user')
@@ -18,6 +20,10 @@ export class User {
 
   @Column('simple-array')
   roles: Role[];
+
+  @ManyToMany(type => Event)
+  @JoinTable()
+  favoriteEvents: string[];
 
   @CreateDateColumn()
   createDate: Date;

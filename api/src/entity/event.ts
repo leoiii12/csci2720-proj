@@ -1,6 +1,10 @@
 import {
-    Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn,
+    Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
+
+import { Comment } from './comment';
+import { User } from './user';
 
 @Entity('event')
 export class Event {
@@ -22,6 +26,9 @@ export class Event {
 
   @Column()
   location: string;
+
+  @OneToMany(type => Comment, comment => comment.event)
+  comments: Comment[];
 
   @CreateDateColumn()
   createDate: Date;
