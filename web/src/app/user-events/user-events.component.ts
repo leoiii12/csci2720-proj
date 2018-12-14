@@ -68,7 +68,7 @@ export class UserEventsComponent implements OnInit {
 
       this.filteredEvents = this.events
         .filter(e => {
-          return e.keywords.filter(value => -1 !== keywords.indexOf(value.split(' ')[this.pageControls.searchColumn])).length > 0;
+          return e.keywords.slice(this.pageControls.searchColumn, this.pageControls.searchColumn + 1).filter(value => -1 !== keywords.indexOf(value)).length > 0;
         })
         .sort((e1, e2) => {
           return e2.keywords.filter(value => -1 !== keywords.indexOf(value)).length -
