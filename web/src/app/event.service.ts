@@ -98,7 +98,7 @@ export class EventService {
 
   getFundraiseEvents(): Observable<{ title: string; time: string; organizer: string; contact: string; location: string; }[]> {
     return this.http
-      .get<any>('http://fundraising.one.gov.hk/fundraise_query/webservice/psi/json?itemperpage=100')
+      .get<any>('https://fundraising.one.gov.hk/fundraise_query/webservice/psi/json?itemperpage=100')
       .pipe(
         map(out => {
           return out.activities as {

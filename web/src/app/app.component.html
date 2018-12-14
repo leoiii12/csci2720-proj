@@ -10,7 +10,7 @@
 
     <!-- Left -->
     <ul class="navbar-nav mr-auto">
-      <li *ngIf="pageControls.username === null" class="nav-item">
+      <li *ngIf="!pageControls.username" class="nav-item">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
       </li>
 
