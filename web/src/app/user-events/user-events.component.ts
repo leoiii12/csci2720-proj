@@ -14,11 +14,22 @@ export class UserEventsComponent implements OnInit {
 
   public pageControls = {
     isFavorite: false,
-    query: ''
+    query: '',
+    searchColumn: 0
   };
 
   public events = [];
   public filteredEvents = [];
+  public columns = [
+    {
+      column: "title", value: 0
+    },
+    {
+      column: "organizer", value: 1
+    },
+    {
+      column: "location", value: 2
+    }];
 
   constructor(
     private eventService: EventService,
@@ -57,7 +68,7 @@ export class UserEventsComponent implements OnInit {
 
       this.filteredEvents = this.events
         .filter(e => {
-          return e.keywords.filter(value => -1 !== keywords.indexOf(value)).length > 0;
+          return e.keywords.filter(value => -1 !== keywords.indexOf(value.split(' ')[this.pageControls.searchColumn])).length > 0;
         })
         .sort((e1, e2) => {
           return e2.keywords.filter(value => -1 !== keywords.indexOf(value)).length -

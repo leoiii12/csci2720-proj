@@ -19,6 +19,11 @@
           <ngx-toggle class="float-right" onColor="success" onText="favorite" offText="all" offColor="secondary" size="sm"
                       [(ngModel)]="pageControls.isFavorite" (valueChange)="onIsFavoriteChange($event)"></ngx-toggle>
         </div>
+
+        <select [(ngModel)]="selectedColumn">
+          <option ngRepeat="x in columns" value="{{x.value}}">{{x.column}}</option>
+        </select>
+
       </div>
       <br>
 
