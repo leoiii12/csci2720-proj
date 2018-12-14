@@ -20,8 +20,8 @@
                       [(ngModel)]="pageControls.isFavorite" (valueChange)="onIsFavoriteChange($event)"></ngx-toggle>
         </div>
 
-        <select [(ngModel)]="selectedColumn">
-          <option ngRepeat="x in columns" value="{{x.value}}">{{x.column}}</option>
+        <select [(ngModel)]="pageControls.searchColumn">
+          <option *ngFor = "let x of columns" [ngValue]="x">{{x.column}}</option>
         </select>
 
       </div>
