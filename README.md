@@ -1,5 +1,5 @@
 # About
-You can access this project via https://event272.azurewebsites.net/about.
+You can access this project via https://event272.azurewebsites.net/about. (The API is stopped now)
 First running takes more time than normal because the azure functions is initializing of cold start.
 
 # Local
