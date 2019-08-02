@@ -14,11 +14,47 @@ export class UserEventsComponent implements OnInit {
 
   public pageControls = {
     isFavorite: false,
-    query: ''
+    query: '',
+    searchColumn: {
+      column: '',
+      value: 0
+    }
   };
+
+  // public events = [{
+  //   id: '1',
+  //   title: "string",
+  //   time: "string",
+  //   organizer: "hell",
+  //   contact: "string",
+  //   location: "yeah",
+  //   comments: null,
+  //   isFavorite: false,
+  //   keywords:null
+  // },{
+  //   id: '2',
+  //   title: "strange",
+  //   time: "string",
+  //   organizer: "hell",
+  //   contact: "string",
+  //   location: "yeah",
+  //   comments: null,
+  //   isFavorite: false,
+  //   keywords:null
+  // }];
 
   public events = [];
   public filteredEvents = [];
+  public columns = [
+    {
+      column: "title", value: 0
+    },
+    {
+      column: "organizer", value: 1
+    },
+    {
+      column: "location", value: 2
+    }];
 
   constructor(
     private eventService: EventService,
@@ -31,6 +67,19 @@ export class UserEventsComponent implements OnInit {
   }
 
   public loadEvents(isFavorite = false) {
+
+    // for (const event of this.events) {
+    //   event.keywords = [].concat(
+    //     event.title.toLowerCase().split(' '),
+    //     event.organizer.toLowerCase().split(' '),
+    //     event.location.toLowerCase().split(' ')
+    //   );
+    // }
+
+    // this.filteredEvents = this.events;
+    // this.updateFilter();
+
+
     this.spinner.show();
 
     this.eventService.getEvents(isFavorite).subscribe((events: any[]) => {
@@ -57,7 +106,11 @@ export class UserEventsComponent implements OnInit {
 
       this.filteredEvents = this.events
         .filter(e => {
-          return e.keywords.filter(value => -1 !== keywords.indexOf(value)).length > 0;
+          // console.log(this.pageControls.searchColumn);
+          // console.log(e);
+          // console.log(e.keywords.slice(this.pageControls.searchColumn.value, this.pageControls.searchColumn.value + 1));
+
+          return e.keywords.slice(this.pageControls.searchColumn.value, this.pageControls.searchColumn.value + 1).filter(value => -1 !== keywords.indexOf(value)).length > 0;
         })
         .sort((e1, e2) => {
           return e2.keywords.filter(value => -1 !== keywords.indexOf(value)).length -
